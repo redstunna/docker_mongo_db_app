@@ -1,0 +1,25 @@
+version: '2'
+services:
+  web:
+    build: .
+    #ports: 
+    #  - "27033"
+    #expose:
+    #  - "27033"
+    volumes:
+      - .:/code
+    links:
+      - mongo_db
+    #depends_on:
+    #  - mongo_db
+  mongo_db:
+    image: "redstunna/docker_mongodb"
+    command: ["--dbpath","/mongo_data","--port","27033"]
+    ports: 
+      - 27033
+    volumes:
+      - /mongo_data:/home/dmitry/docker_db
+      #- ./data
+    #expose:
+    #  - "27033"
+    
